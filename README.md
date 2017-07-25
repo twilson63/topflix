@@ -11,7 +11,9 @@ cd topflix
 npm install
 npm run dev
 ```
+Or use glitch
 
+https://glitch.com/edit/#!/topflix?path=README.md:1:0
 ---
 
 Top flix is a react/redux tutorial that gives developers a way to practice building react/redux applications, this tutorial will go through the basics:
