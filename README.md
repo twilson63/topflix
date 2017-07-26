@@ -374,8 +374,25 @@ component for each movie item. Using the `{}` curley braces we can create an exp
 We will use the map function to transform the state list of movies from a list of
 objects into a list of `ListItems`
 
-```
+``` js
 <List className="avenir">
   {map(m => <ListItem key={m.id}>{m.title}</ListItem>, props.movies)}
 </List>
+```
+
+## Step 2 - Search Form
+
+Now that we have our movies listing, we need to create a search form, on the
+Search Page.
+
+``` js
+<form className="pa4" onSubmit={props.search}>
+  <TextField
+    value={props.query}
+    onChange={props.handleChange}
+    name="Search"
+    helpTxt="Enter a name of a movie and press ENTER"
+  />
+  <Button>Search</Button>
+</form>
 ```

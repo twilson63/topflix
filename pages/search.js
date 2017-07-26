@@ -33,6 +33,9 @@ function mapStateToProps (state) {
 
 function mapActionsToProps (dispatch) {
   return {
+    handleChange: e => {
+      dispatch({type: 'SET_SEARCH', payload: e.target.value})
+    },
     search: e => {
       e.preventDefault()
       dispatch(search)
