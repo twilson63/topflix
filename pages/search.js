@@ -16,6 +16,16 @@ const Search = props => {
         navLeft="/" iconLeft="chevron-left"
         title="Search"
       />
+      <form className="pa4">
+        <TextField
+          value={props.query}
+          onChange={props.handleChange}
+
+          name="Search"
+          helpTxt="Enter a name of a movie and press ENTER"
+        />
+        <Button>Search</Button>
+      </form>
     </section>
   )
 }
