@@ -1,7 +1,15 @@
 import { combineReducers } from 'redux'
+import { append } from 'ramda'
 
 const app = (state={title: 'Favorite Movies'}, action) => state
-const movies = (state=defaultMovies(), action) => state
+const movies = (state=defaultMovies(), action) => {
+  switch (action.type) {
+    case 'ADD_MOVIE':
+      return append(action.payload, state)
+    default:
+      return state
+  }
+}
 const movie = (state=defaultMovies()[0], action) => {
   switch (action.type) {
     case 'SET_MOVIE':
@@ -11,7 +19,25 @@ const movie = (state=defaultMovies()[0], action) => {
   }
 }
 
-export default combineReducers({app, movies, movie})
+const search = (state='', action) => {
+  switch(action.type) {
+    case 'SET_SEARCH':
+      return action.payload
+    default:
+      return state
+  }
+}
+
+const searchResults = (state=[], action) => {
+  switch(action.type) {
+    case 'SET_RESULTS':
+      return action.payload
+    default:
+      return state
+  }
+}
+
+export default combineReducers({app, movies, movie, search, searchResults })
 
 function defaultMovies () {
   return [
