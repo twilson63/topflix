@@ -6,12 +6,12 @@ import fetch from 'isomorphic-fetch'
 // thunk functions
 export const search = (dispatch, getState) => {
   const query = getState().search
-  return fetch(`${url}/q=${query}`, {
+  return fetch(`${url}/?q=${query}`, {
     headers: {
       'content-type': 'application/json',
       authorization: 'Bearer ' + JWT
     }
   })
   .then(res => res.json())
-  .then(results => ({type: 'SET_RESULTS', payload: results.Search }))
+  .then(results => dispatch({type: 'SET_RESULTS', payload: results.Search }))
 }

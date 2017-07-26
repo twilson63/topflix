@@ -363,7 +363,7 @@ test('get widgets and dispatch action', t => {
 
 Tutorial
 
-## Step 1 - List Movies
+## Step 1 - List Movies (pages/index.js)
 
 We are going to use a map function to list all the movies we have in our state.
 We are mapping our state to a prop called movies, when our component get called
@@ -380,19 +380,71 @@ objects into a list of `ListItems`
 </List>
 ```
 
-## Step 2 - Search Form
+## Step 2 - Search Form (pages/search.js)
 
 Now that we have our movies listing, we need to create a search form, on the
 Search Page.
 
 ``` js
-<form className="pa4" onSubmit={props.search}>
+<form className="pa4">
   <TextField
-    value={props.query}
-    onChange={props.handleChange}
     name="Search"
     helpTxt="Enter a name of a movie and press ENTER"
   />
   <Button>Search</Button>
 </form>
 ```
+
+Now that we have our search template, we need to turn the TextField into a controlled
+component. A controlled component is where we connect the component to our state by
+using the `value` prop and the `onChange` prop.
+
+```
+<TextField
+  value={props.query}
+  onChange={props.handleChange}
+  name="Search"
+  helpTxt="Enter a name of a movie and press ENTER"
+/>
+```
+
+Now that we added our value and onChange event we should be able to use the
+React Dev Tools to see it properly set the state of the query prop.
+
+## Step 3 - Submitting our form (pages/search.js)
+
+Now that we have all the data we need to make our movie search request, we need
+to submit it.
+
+```
+<form className="pa4" onSubmit={props.search}>
+  ...
+</form>
+```
+
+When a button in a from is clicked the form's onSubmit event is fired, we can
+handle this event using the onSubmit prop of the form component. We will assign
+it to our props.search action, you can see the logic in the `mapActionsToProps`
+function defined at the bottom of the search.js file.
+
+## Step 4 - Showing the Search Results
+
+Now that we have our search working, we need to show the results, just like
+we handled the list of movies, we want to render a list of movie results.
+
+This time we will list them using a Card Component.
+
+```js
+{map(m => <Card key={m.id} {...m} />, props.results)}
+```
+
+## Step 5 - Handling the selection of a movie
+
+Now that we have the search results, when the movie is selected we need to add
+it to our main list, then navigate back to our list page.
+
+``` js
+{map(m => <Card onClick={props.add(m, props.history)} key={m.id} {...m} />, props.results)}
+````
+
+Congrats, you have finished the react tutorial! 

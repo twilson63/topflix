@@ -1,12 +1,19 @@
 import { combineReducers } from 'redux'
-import { append, assoc } from 'ramda'
-import uuid from 'uuid'
+import R from 'ramda'
+const { append, assoc, compose } = R
+import cuid from 'cuid'
 
 const app = (state={title: 'Favorite Movies'}, action) => state
 const movies = (state=defaultMovies(), action) => {
   switch (action.type) {
     case 'ADD_MOVIE':
-      return append(assoc('id', uuid.v4(), action.payload), state)
+      return append(
+        compose(
+          assoc('title', action.payload.Title),
+          assoc('year', action.payload.Year),
+          assoc('poster', action.payload.Poster),
+          assoc('id', cuid())
+        )({}), state)
     default:
       return state
   }

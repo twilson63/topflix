@@ -2,10 +2,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import HeaderBar from '../../components/header-bar'
+import Card from '../../components/card'
 import { TextField, Button, List, ListItem } from 't63'
 import { search } from '../db'
 import R from 'ramda'
 const { map } = R
+
 
 const Search = props => {
   return (
@@ -14,8 +16,6 @@ const Search = props => {
         navLeft="/" iconLeft="chevron-left"
         title="Search"
       />
-      {/* add search form here */}
-      {/* list search results here */}
     </section>
   )
 }
@@ -40,8 +40,10 @@ function mapActionsToProps (dispatch) {
       e.preventDefault()
       dispatch(search)
     },
-    add: movie => e => {
+    add: (movie, history) => e => {
       dispatch({type: 'ADD_MOVIE', payload: movie })
+      dispatch({type: 'SET_SEARCH', payload: ''})
+      history.push('/')
     }
   }
 }
