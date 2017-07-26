@@ -14,6 +14,9 @@ const Page = props => {
         navRight="/search" iconRight="search"
       />
       {/* list movies here */}
+      <List className="avenir">
+        {map(m => <ListItem key={m.id}>{m.title}</ListItem>, props.movies)}
+      </List>
     </section>
   )
 }
