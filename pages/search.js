@@ -16,7 +16,7 @@ const Search = props => {
         navLeft="/" iconLeft="chevron-left"
         title="Search"
       />
-      <form className="pa4">
+      <form className="pa4" onSubmit={props.search}>
         <TextField
           value={props.query}
           onChange={props.handleChange}
