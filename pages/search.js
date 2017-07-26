@@ -26,6 +26,7 @@ const Search = props => {
         />
         <Button>Search</Button>
       </form>
+      {map(m => <Card key={m.id} {...m} />, props.results)}
     </section>
   )
 }
