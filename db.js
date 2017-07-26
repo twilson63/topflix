@@ -4,13 +4,14 @@ const JWT =
 import fetch from 'isomorphic-fetch'
 
 // thunk functions
-export const search = async (dispatch, getState) => {
+export const search = (dispatch, getState) => {
   const query = getState().search
-  const results = await fetch(`${url}/q=${query}`, {
+  return fetch(`${url}/q=${query}`, {
     headers: {
       'content-type': 'application/json',
       authorization: 'Bearer ' + JWT
     }
-  }).then(res => res.json())
-  return {type: 'SET_RESULTS', payload: results.Search }
+  })
+  .then(res => res.json())
+  .then(results => ({type: 'SET_RESULTS', payload: results.Search }))
 }
