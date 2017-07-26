@@ -1,9 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import R from 'ramda'
 
 import HeaderBar from '../../components/header-bar'
 
 import { List, ListItem } from 't63'
+
+const { map } = R
 
 const Page = props => {
   return (

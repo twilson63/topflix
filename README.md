@@ -362,3 +362,20 @@ test('get widgets and dispatch action', t => {
 ---
 
 Tutorial
+
+## Step 1 - List Movies
+
+We are going to use a map function to list all the movies we have in our state.
+We are mapping our state to a prop called movies, when our component get called
+we can access this prop by using the `props.movies` variable. To render the list
+of movies, we will use a `List` Component as our wrapper and we will use a `ListItem`
+component for each movie item. Using the `{}` curley braces we can create an expression.
+
+We will use the map function to transform the state list of movies from a list of
+objects into a list of `ListItems`
+
+```
+<List className="avenir">
+  {map(m => <ListItem key={m.id}>{m.title}</ListItem>, props.movies)}
+</List>
+```
